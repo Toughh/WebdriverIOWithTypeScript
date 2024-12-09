@@ -14,6 +14,7 @@ Feature: Parfum Product Listing based on selected filters
     Then all displayed items should have the selected filter "<option3>"
 
     Examples:
-      | menu   | dropdown1 | option1 | category | dropdown2 | option2     | dropdown3 | option3             | dropdown4 | option4  | dropdown5 | option5        |
-      | parfum |     6     | Sale    | Sale     |     7     | Weihnachten |     2     |  4711               |     3     | Unisex   |     1     | Eau de Cologne |
-	    | parfum |     6     | Sale    | Sale     |     7     | Nikolaus    |     2     | Abercrombie & Fitch |     3     | Männlich |     1     |     Duftset    |
+      | menu   | dropdown1 | option1   | category | dropdown2 | option2     | dropdown3 | option3             | dropdown4 | option4  | dropdown5 | option5        |
+      | parfum |     6     | Sale      | Sale     |     7     | Weihnachten |     2     |  4711               |     3     | Unisex   |     1     | Eau de Cologne |
+		  | parfum |     6     | NEU       | NEU      |     7     | Weihnachten |     2     | Abercrombie & Fitch |     3     | Männlich |     1     |     Duftset    |
+		  | parfum |     6     | Limitiert | Sale     |     7     | Weihnachten |     2     | Abercrombie & Fitch |     3     | Männlich |     1     |     Duftset    |
