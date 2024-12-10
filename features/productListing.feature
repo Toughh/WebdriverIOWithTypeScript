@@ -6,10 +6,10 @@ Feature: Parfum Product Listing based on selected filters
     When the user clicks the "Accept Cookies" button
     When user click on parent "<menu>"
     When user select an option "<option1>" from dropdown <dropdown1>
-    When user select an option "<option2>" from dropdown <dropdown2>
-    When user select an option "<option3>" from dropdown <dropdown3>
-    When user select an option "<option4>" from dropdown <dropdown4>
-    When user select an option "<option5>" from dropdown <dropdown5>
+    And user select an option "<option2>" from dropdown <dropdown2>
+    And user select an option "<option3>" from dropdown <dropdown3>
+    And user select an option "<option4>" from dropdown <dropdown4>
+    And user select an option "<option5>" from dropdown <dropdown5>
     Then all displayed items should have the selected filter "<category>"
     Then all displayed items should have the selected filter "<option3>"
 
