@@ -1,10 +1,12 @@
 import { Given, When } from '@cucumber/cucumber';
-import Page from '../pageobjects/page.ts';
+import Page from '../pageobjects/page';
+import Cookies from '../pageobjects/cookies.page';
 
 Given('the user navigates to the website', async () => {
-    await Page.navigate();
+    const page = new Page();
+    await page.navigate();
 });
 
 When('the user clicks the "Accept Cookies" button', async () => {
-    await Page.acceptCookies();
+    await Cookies.acceptTheCookies();
 });
