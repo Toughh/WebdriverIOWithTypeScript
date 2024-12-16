@@ -2,7 +2,7 @@ Feature: Parfum Product Listing based on selected filters
 
   Scenario Outline: As a user, I should be able to filter out parfum sale products
 
-    Given the user navigates to the website
+    # Given the user navigates to the website
     When the user clicks the "Accept Cookies" button
     When user click on parent "<menu>"
     When user select an option "<option1>" from dropdown <dropdown1>

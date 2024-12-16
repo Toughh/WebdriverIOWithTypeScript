@@ -1,6 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+const QA = "https://www.douglas.de";
+let appbaseUrl: string;
+
+if (process.env.ENV === 'QA') { appbaseUrl=QA }
+else { console.log("Please enter correct env: qa");
+    process.exit();
+}
+
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -9,6 +17,7 @@ export const config: WebdriverIO.Config = {
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
     tsConfigPath: './tsconfig.e2e.json',
+
     
     //
     // ==================
@@ -99,7 +108,7 @@ export const config: WebdriverIO.Config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://www.douglas.de',
+    baseUrl: appbaseUrl,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -244,8 +253,11 @@ export const config: WebdriverIO.Config = {
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // beforeFeature: function (uri, feature) {
-    // },
+    beforeFeature: async function (uri, feature) {
+        await browser.deleteAllCookies();
+        await browser.url('/de');
+        await browser.maximizeWindow();
+    },
     /**
      *
      * Runs before a Cucumber Scenario.
@@ -292,7 +304,7 @@ export const config: WebdriverIO.Config = {
      */
     afterScenario: async () => {
         console.log("Closing browser...");
-        await browser.deleteCookies();
+        // await browser.deleteCookies();
     },
     /**
      *
@@ -338,10 +350,10 @@ export const config: WebdriverIO.Config = {
      * @param {<Object>} results object containing test results
      */
     onComplete: () => {
-        // const allureReport = path.join(process.cwd(), 'allure-report');
-        // if (fs.existsSync(allureReport)) {
-        // fs.rmdirSync(allureReport, { recursive: true });  // Delete the allure-report folder
-        // }
+        const allureReport = path.join(process.cwd(), 'allure-report');
+        if (fs.existsSync(allureReport)) {
+        fs.rmdirSync(allureReport, { recursive: true });  // Delete the allure-report folder
+        }
         // const allureResults = path.join(process.cwd(), 'allure-results');
         // if (fs.existsSync(allureResults)) {
         //     fs.rmdirSync(allureResults, { recursive: true });  // Delete the allure-results folder
